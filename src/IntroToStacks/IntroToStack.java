@@ -1,7 +1,11 @@
 package IntroToStacks;
 
+import java.util.Stack;
+
 public class IntroToStack {
 	public static void main(String[] args) {
+		Stack<Double> decimals = new Stack<>();
+
 		//1. Create a Stack of Doubles
 		//   Don't forget to import the Stack class
 		
