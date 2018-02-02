@@ -15,6 +15,9 @@ JPanel panel;
 JButton button1;
 JButton button2;
 JButton button3;
+JButton button4;
+int id;
+String Name;
 HashMap<Integer, String> peopleIDs = new HashMap<>();
 public static void main(String[] args) {
 	LogSearch logSearch = new LogSearch();
@@ -53,12 +56,15 @@ void start() {
 	button1 = new JButton("Add Entry");
 	button2 = new JButton("Search Via ID");
 	button3 = new JButton("View List");
+	button4 = new JButton("Remove Entry");
 	button1.addActionListener(this);
 	button2.addActionListener(this);
 	button3.addActionListener(this);
+	button4.addActionListener(this);
 	panel.add(button1);
 	panel.add(button2);
 	panel.add(button3);
+	panel.add(button4);
 	frame.add(panel);
 	frame.setVisible(true);
 }
@@ -67,8 +73,8 @@ public void actionPerformed(ActionEvent e) {
 	JButton buttonPressed = (JButton) e.getSource();
 	if(buttonPressed == button1) {
 		String ID = JOptionPane.showInputDialog("Enter a number");
-		String Name = JOptionPane.showInputDialog("Enter a name");
-		int id = Integer.parseInt(ID);
+		Name = JOptionPane.showInputDialog("Enter a name");
+		id = Integer.parseInt(ID);
 		peopleIDs.put(id, Name);
 	}
 	else if(buttonPressed == button2) {
@@ -82,6 +88,23 @@ public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(null, InHashMapOrNot);
 		}
 		
+	}
+	else if(buttonPressed==button3) {
+		String viewName = "";
+		for(int d: peopleIDs.keySet()) {
+			viewName+= "ID"+ d + ": " + peopleIDs.get(d) + "\n";
+		}
+		JOptionPane.showMessageDialog(null, viewName);
+	}else if(buttonPressed == button4) {
+		String E = JOptionPane.showInputDialog("Enter an ID");
+		int InMapOrNO = Integer.parseInt(E);
+		if(peopleIDs.get(InMapOrNO)!=null) {
+			peopleIDs.remove(InMapOrNO);
+			JOptionPane.showMessageDialog(null, "Removed.");
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "This ID is not in the list.");
+		}
 	}
 	// TODO Auto-generated method stub
 	
